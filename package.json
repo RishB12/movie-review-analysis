@@ -1,0 +1,12 @@
+
+{
+  "main": "electron/main.cjs",
+  "scripts": {
+    "frontend": "vite",
+    "server": ".venv/bin/python -m uvicorn src.server:app --port 8001",
+    "desktop": "wait-on tcp:5173 && electron --no-sandbox .",
+    "dev": "concurrently -k -n FRONTEND,BACKEND,DESKTOP \"npm:frontend\" \"npm:server\" \"npm:desktop\"",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}
