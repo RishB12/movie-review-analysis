@@ -71,15 +71,56 @@ npm install
 
 ## 🚀 Running the Project
 
-Start the application using the scripts defined in `package.json`:
+The application uses Vite for the frontend, FastAPI for the Python backend, and Electron for the desktop interface. The development command starts all three services concurrently.
+
+### 1. Install dependencies
+
+Install the JavaScript dependencies:
+
+```bash
+npm install
+```
+
+Create and activate a Python virtual environment, then install the Python requirements:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Make sure the IMDb dataset is available at `db/IMDB Dataset.csv` before running any scripts that require it.
+
+### 2. Start the application
+
+Run the following command from the project root:
 
 ```bash
 npm run dev
 ```
 
-This lists the available npm scripts. Run the appropriate script to launch the web interface or desktop application.
+This starts three processes:
 
-> **Note:** The exact command depends on the scripts configured in `package.json`.
+- **Frontend:** Vite development server at `http://localhost:5173`
+- **Backend:** FastAPI server at `http://localhost:8001`
+- **Desktop:** Electron application, launched after the frontend becomes available
+
+The frontend, backend, and desktop application run concurrently. Press `Ctrl+C` in the terminal to stop the development processes.
+
+### 3. Run individual services
+
+You can also start each service separately:
+
+| Command | Purpose |
+|---|---|
+| `npm run frontend` | Start the Vite frontend |
+| `npm run server` | Start the FastAPI backend |
+| `npm run desktop` | Launch Electron after the frontend is available |
+| `npm run build` | Build the frontend for production |
+| `npm run preview` | Preview the production frontend build |
+
+**Note:** The `server` script uses `.venv/bin/python`, so create the virtual environment in the project root before starting the backend. The Electron development script also uses `--no-sandbox`, so keep that in mind when distributing the application beyond your development environment.
+
 
 ## 🧠 Machine Learning
 
