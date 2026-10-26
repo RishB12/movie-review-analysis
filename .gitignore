@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+#pycache
+__pycache__/
+*.py[cod]
+.venv/
+
+# Database
+db/
